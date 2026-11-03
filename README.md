@@ -24,10 +24,11 @@ Requires .NET 8 SDK. Outputs epoch logs every 100 epochs to console and `trainin
 
 ## Method
 
-* **Forward:** $a = f(\sum w \cdot x + b)$, sigmoid hidden + sigmoid output.
-* **Loss:** MSE $0.5(o - t)^2$; reported on test set with log loss.
-* **Backprop:** $\delta_{out} = (o - t) \cdot o(1 - o)$, $\delta_h = h(1 - h) \cdot \delta_{out} \cdot w_{out}$, $w = w - lr \cdot \delta \cdot input$.
-* **Hyperparameters tested:** $lr \in \{0.01, 0.1, 0.5\} \times hidden \in \{4, 8, 16\}$, best configuration chosen based on test accuracy.
+* **Forward:** `a = f(∑ w · x + b)`, sigmoid hidden + sigmoid output.
+* **Loss:** MSE `0.5(o - t)²`; reported on test set with log loss.
+* **Backprop:** `δ_out = (o - t) · o(1 - o)`, `δ_h = h(1 - h) · δ_out · w_out`, `w = w - lr · δ · input`.
+* **Hyperparameters tested:** lr ∈ {0.01, 0.1, 0.5} × hidden ∈ {4, 8, 16}, best configuration chosen based on test accuracy.
+
 ## Results & Evaluation
 
 ### Dataset Overview
