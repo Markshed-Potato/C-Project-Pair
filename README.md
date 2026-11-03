@@ -12,23 +12,22 @@ Requires .NET 8 SDK. Outputs epoch logs every 100 epochs to console and `trainin
 ## Structure
 | Folder | Owner | Contents |
 |---|---|---|
-| `Common/` | A | `Dataset` shared contract |
-| `Data/` | A | `CsvDataLoader`, `MinMaxScaler`, `DatasetSplitter` |
-| `Evaluation/` | A | `Metrics` (accuracy, precision, recall, F1, MSE, log loss) |
-| `Network/` | B | `Neuron`, `Layer`, `NeuralNetwork`, `Activation` |
-| `Training/` | B | `Trainer` (SGD loop, logging) |
-| `Program.cs` | B | Integration + hyperparameter search |
+| `Common/` | Racho | `Dataset` shared contract |
+| `Data/` | Racho | `CsvDataLoader`, `MinMaxScaler`, `DatasetSplitter` |
+| `Evaluation/` | Racho | `Metrics` (accuracy, precision, recall, F1, MSE, log loss) |
+| `Network/` | Largo | `Neuron`, `Layer`, `NeuralNetwork`, `Activation` |
+| `Training/` | Largo | `Trainer` (SGD loop, logging) |
+| `Program.cs` | Largo | Integration + hyperparameter search |
 
 ## Data Description
 `data/churn.csv`: 600 synthetic customers. Features: `tenure_months`, `monthly_charges`, `support_calls`, `contract_months`, `age`. Label `churn` (1 = left). ~3% missing `monthly_charges` values (mean-imputed). Features Min-Max scaled to [0,1] using train-set statistics only; 80/20 shuffled split.
 
 ## Method
-- Forward: `a = f(Σ w·x + b)`, sigmoid hidden + sigmoid output.
-- Loss: MSE `0.5(o−t)²`; reported on test set with log loss.
-- Backprop: `δ_out=(o−t)·o(1−o)`, `δ_h=h(1−h)·δ_out·w_out`, `w −= lr·δ·input`.
-- Hyperparameters tested: lr ∈ {0.01, 0.1, 0.5} × hidden ∈ {4, 8, 16}; best picked by test accuracy (add results table here after running).
 
-## Results
+* **Forward:** $a = f(\sum w \cdot x + b)$, sigmoid hidden + sigmoid output.
+* **Loss:** MSE $0.5(o - t)^2$; reported on test set with log loss.
+* **Backprop:** $\delta_{out} = (o - t) \cdot o(1 - o)$, $\delta_h = h(1 - h) \cdot \delta_{out} \cdot w_{out}$, $w = w - lr \cdot \delta \cdot input$.
+* **Hyperparameters tested:** $lr \in \{0.01, 0.1, 0.5\} \times hidden \in \{4, 8, 16\}$, best configuration chosen based on test accuracy.
 ## Results & Evaluation
 
 ### Dataset Overview
